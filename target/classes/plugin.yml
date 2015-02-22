@@ -1,0 +1,8 @@
+name: WerrisCoiniator
+main: de.fireearth.werri.werriscoiniator.WerrisCoiniator
+version: 0.1
+author: Werri
+commands:
+  wcoin:
+    description: wcoin help By Werri
+    usage: /<command>
