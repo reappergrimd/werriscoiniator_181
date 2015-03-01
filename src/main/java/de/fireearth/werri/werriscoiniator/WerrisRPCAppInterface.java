@@ -104,7 +104,7 @@ public class WerrisRPCAppInterface {
         Player player = null;
         try
         {
-            UUID.fromString(name);
+            fromString=UUID.fromString(name);
             player = Bukkit.getPlayer(fromString);
             if(player==null)
             {
@@ -127,7 +127,7 @@ public class WerrisRPCAppInterface {
         OfflinePlayer player = null;
         try
         {
-            UUID.fromString(name);
+            fromString=UUID.fromString(name);
             player = Bukkit.getOfflinePlayer(fromString);
             if(player==null)
             {
