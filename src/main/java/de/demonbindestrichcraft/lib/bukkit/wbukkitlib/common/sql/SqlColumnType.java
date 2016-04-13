@@ -4,8 +4,6 @@
  */
 package de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql;
 
-import java.util.Locale;
-
 /**
  *
  * @author ABC

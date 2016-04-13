@@ -4,9 +4,6 @@
  */
 package de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.files;
 
-import de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql.Sql;
-import de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql.SqlInterface;
-import de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql.SqlLite;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +15,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql.SqlInterface;
+import de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql.SqlLite;
 
 /**
  *

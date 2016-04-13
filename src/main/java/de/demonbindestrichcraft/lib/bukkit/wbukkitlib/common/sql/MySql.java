@@ -31,68 +31,62 @@ public class MySql implements SqlInterface {
         
     }
 
-    @Override
     public void executeSqlQuery(String sqlQuery, boolean selectQuery) {
         sql.executeSqlQuery(sqlQuery, selectQuery);
     }
 
-    @Override
     public List<String> getResultSql(String... res) {
         return sql.getResultSql(res);
     }
     
-    @Override
     public Map<String, List<String>> getResultSqlEx(String... res) {
         return sql.getResultSqlEx(res);
     }
     
-    @Override
     public boolean close() {
         return sql.close();
     }
 
-    @Override
     public boolean closeResultSet() {
         return sql.closeResultSet();
     }
     
-    @Override
     public boolean isClosed()
     {
         return sql.isClosed();
     }
 
-    @Override
+    
     public String getCreateTableSqlQuery(String tablename, boolean usePrimaryKey, String... spalten) {
         return getMySqlCreateTableSqlQuery(datenbank, tablename, usePrimaryKey, spalten);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key) {
         return getMySqlSelectSqlQuery(datenbank, tablename, key);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key, String bedingung) {
         return getMySqlSelectSqlQuery(datenbank, tablename, key, bedingung);
     }
 
-    @Override
+    
     public String getInsertIntoTableSqlQuery(String tablename, String[] spalten, String[] values) {
         return getMySqlInsertIntoTableSqlQuery(datenbank, tablename, spalten, values);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set) {
         return getMySqlUpdateSqlQuery(datenbank, tablename, set);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set, String bedingung) {
         return getMySqlUpdateSqlQuery(datenbank, tablename, set, bedingung);
     }
 
-    @Override
+    
     public String getDeleteSqlQuery(String tablename, String bedingung) {
         return getMySqlDeleteSqlQuery(datenbank, tablename, bedingung);
     }

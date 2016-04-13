@@ -21,68 +21,68 @@ public class SqlLite implements SqlInterface {
         sql = new Sql(jdbcDriverSqlLite, connectionStringSqlLite + datenbank, username, password);
     }
 
-    @Override
+    
     public void executeSqlQuery(String sqlQuery, boolean selectQuery) {
         sql.executeSqlQuery(sqlQuery, selectQuery);
     }
 
-    @Override
+    
     public List<String> getResultSql(String... res) {
         return sql.getResultSql(res);
     }
     
-    @Override
+    
     public Map<String, List<String>> getResultSqlEx(String... res) {
         return sql.getResultSqlEx(res);
     }
     
-    @Override
+    
     public boolean close() {
         return sql.close();
     }
 
-    @Override
+    
     public boolean closeResultSet() {
         return sql.closeResultSet();
     }
     
-    @Override
+    
     public boolean isClosed()
     {
         return sql.isClosed();
     }
 
-    @Override
+    
     public String getCreateTableSqlQuery(String tablename, boolean usePrimaryKey, String... spalten) {
         return getSqlLiteCreateTableSqlQuery(tablename, usePrimaryKey, spalten);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key) {
         return getSqlLiteSelectSqlQuery(tablename, key);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key, String bedingung) {
         return getSqlLiteSelectSqlQuery(tablename, key, bedingung);
     }
 
-    @Override
+    
     public String getInsertIntoTableSqlQuery(String tablename, String[] spalten, String[] values) {
         return getSqlLiteInsertIntoTableSqlQuery(tablename, spalten, values);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set) {
         return getSqlLiteUpdateSqlQuery(tablename, set);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set, String bedingung) {
         return getSqlLiteUpdateSqlQuery(tablename, set, bedingung);
     }
 
-    @Override
+    
     public String getDeleteSqlQuery(String tablename, String bedingung) {
         return getSqlLiteDeleteSqlQuery(tablename, bedingung);
     }

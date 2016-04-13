@@ -4,7 +4,12 @@ package de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.sql;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +47,7 @@ public class Sql implements SqlInterface {
         }
     }
 
-    @Override
+    
     public void executeSqlQuery(String sqlQuery, boolean selectQuery) {
         if (sqlStatement == null) {
             return;
@@ -63,7 +68,7 @@ public class Sql implements SqlInterface {
         }
     }
 
-    @Override
+    
     public List<String> getResultSql(String... res) {
         List<String> resultSql = new LinkedList<String>();
 
@@ -88,7 +93,7 @@ public class Sql implements SqlInterface {
         return resultSql;
     }
     
-    @Override
+    
     public Map<String, List<String>> getResultSqlEx(String... res) {
         Map<String, List<String>> resultSql = new HashMap<String, List<String>>();
 
@@ -117,7 +122,7 @@ public class Sql implements SqlInterface {
         return resultSql;
     }
 
-    @Override
+    
     public boolean close() {
         try {
             if (sqlStatement != null) {
@@ -137,7 +142,7 @@ public class Sql implements SqlInterface {
         return false;
     }
 
-    @Override
+    
     public boolean closeResultSet() {
         try {
             if (sqlResultSet != null) {
@@ -161,7 +166,7 @@ public class Sql implements SqlInterface {
         return preparedStatement;
     }
 
-    @Override
+    
     public boolean isClosed() {
         boolean closeStmt = true;
         boolean closeConnect = true;
@@ -185,37 +190,37 @@ public class Sql implements SqlInterface {
         }
     }
 
-    @Override
+    
     public String getCreateTableSqlQuery(String tablename, boolean usePrimaryKey, String... spalten) {
         return getSqlCreateTableSqlQuery(tablename, usePrimaryKey, spalten);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key) {
         return getSqlSelectSqlQuery(tablename, key);
     }
 
-    @Override
+    
     public String getSelectSqlQuery(String tablename, String key, String bedingung) {
         return getSqlSelectSqlQuery(tablename, key, bedingung);
     }
 
-    @Override
+    
     public String getInsertIntoTableSqlQuery(String tablename, String[] spalten, String[] values) {
         return getSqlInsertIntoTableSqlQuery(tablename, spalten, values);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set) {
         return getSqlUpdateSqlQuery(tablename, set);
     }
 
-    @Override
+    
     public String getUpdateSqlQuery(String tablename, String set, String bedingung) {
         return getSqlUpdateSqlQuery(tablename, set, bedingung);
     }
 
-    @Override
+    
     public String getDeleteSqlQuery(String tablename, String bedingung) {
         return getSqlDeleteSqlQuery(tablename, bedingung);
     }

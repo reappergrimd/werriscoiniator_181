@@ -1,12 +1,12 @@
 package com.sectorgamer.sharkiller.milkAdmin.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
-import java.io.FileInputStream;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Used for accessing and creating .[properties] files, reads them as utf-8, saves as utf-8.

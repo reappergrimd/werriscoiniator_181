@@ -1,20 +1,9 @@
 package de.fireearth.werri.werriscoiniator;
 
-import com.nitinsurana.bitcoinlitecoin.rpcconnector.RPCApp;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 /**
  * Handler for the /pos sample command.
@@ -30,7 +19,7 @@ public class WerrisCoiniatorCommand_wcoin implements CommandExecutor {
         this.werrisRPCAppInterface = plugin.getWerrisRPCAppInterface();
     }
 
-    @Override
+    
     public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {
         if (!(sender instanceof Player)) {
             return true;

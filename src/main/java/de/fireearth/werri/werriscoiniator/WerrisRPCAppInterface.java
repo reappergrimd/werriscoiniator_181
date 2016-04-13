@@ -4,21 +4,24 @@
  */
 package de.fireearth.werri.werriscoiniator;
 
-import com.nitinsurana.bitcoinlitecoin.rpcconnector.RPCApp;
-import com.nitinsurana.bitcoinlitecoin.rpcconnector.RpcInvalidResponseException;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+
+import com.nitinsurana.bitcoinlitecoin.rpcconnector.RPCApp;
 
 /**
  *
  * @author ABC
  */
-public class WerrisRPCAppInterface {
+
+public class WerrisRPCAppInterface implements Listener {
 
     private final WerrisCoiniator plugin;
     private final RPCApp rpcApp;
@@ -37,30 +40,33 @@ public class WerrisRPCAppInterface {
     public WerrisCoiniator getPlugin() {
         return plugin;
     }
-
+   
     public String checkAccount(String name) {
-        boolean isAccountInList = false;
+     
         try {
-            isAccountInList = rpcApp.isAccountInList(name);
+        	if(WerrisCoiniator.REDIS.get("address"+name)==null)
+        	{
+        		WerrisCoiniator.REDIS.set("address"+name, (String) rpcApp.getAccountAddress(name));
+        		return WerrisCoiniator.REDIS.get("address"+name);
+        	}
+        	else
+        	{
+        	return WerrisCoiniator.REDIS.get("address"+name);
+        	}               
+                 
+          
         } catch (Exception ex) {
-            Logger.getLogger(WerrisCoiniatorCommand_wcoin.class.getName()).log(Level.SEVERE, null, ex);
+        	 Logger.getLogger(WerrisCoiniatorCommand_wcoin.class.getName()).log(Level.SEVERE, null, ex);     
+        	 WerrisCoiniator.REDIS.set("address"+name, (String) rpcApp.getNewAddress(name));
+        	 return WerrisCoiniator.REDIS.get("address"+name);
         }
-        if (!isAccountInList) {
-            try {
-                String account = rpcApp.getNewAddress(name);
-                return account;
-            } catch (Exception ex) {
-                Logger.getLogger(WerrisCoiniatorCommand_wcoin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return "";
     }
 
-    public double getBalance(String name) {
+    public double getBalance(String name) {    	
         checkAccount(name);
         double balance = 0;
         try {
-            balance = rpcApp.getBalance(name);
+            balance = rpcApp.getBalance(name);          
             return balance;
         } catch (Exception ex) {
             Logger.getLogger(WerrisCoiniatorCommand_wcoin.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,7 +245,7 @@ public class WerrisRPCAppInterface {
         }
     }
 
-    public void paymentTransfer(String accountName, String address, double amountD) {
+    public void paymentTransfer(String accountName, String address, Double amountD) {
         checkAccount(accountName);
         if (amountD <= 0) {
             return;
@@ -251,7 +257,7 @@ public class WerrisRPCAppInterface {
             rpcApp.sendFrom(accountName, address, amountD);
             return;
         } catch (Exception ex) {
-            if (ex instanceof RpcInvalidResponseException) {
+            if (ex instanceof com.nitinsurana.bitcoinlitecoin.rpcconnector.exception.RpcInvalidResponseException) {
                 return;
             }
         }
@@ -305,6 +311,7 @@ public class WerrisRPCAppInterface {
     }
 
     public String getPaymentAddress(String name) {
+    	Bukkit.getLogger().info("Your Account Ceck: " +name);
         String checkAccount = checkAccount(name);
         if (checkAccount.isEmpty()) {
             try {
@@ -339,7 +346,7 @@ public class WerrisRPCAppInterface {
             player.sendMessage("You have transfered " + amount + " " + coinName + " to " + address + "!");
             sendBalanceMessage(player);
         } catch (Exception ex) {
-            if (ex instanceof RpcInvalidResponseException) {
+            if (ex instanceof com.nitinsurana.bitcoinlitecoin.rpcconnector.exception.RpcInvalidResponseException) {
                 player.sendMessage("Transaction error!");
                 player.sendMessage("You don't have tranfered " + amount + " " + coinName + " to " + address + "!");
                 sendBalanceMessage(player);
@@ -350,17 +357,17 @@ public class WerrisRPCAppInterface {
     }
 
     public void sendAccountDetailsMessage(Player player) {
-        player.sendMessage("---WerrisCoiniator Bank Details---");
+        player.sendMessage("---GuaCraft Bank Details---");
         String paymentAddress = getPaymentAddress(getName(player));
         player.sendMessage("Your account address: " + paymentAddress);
-        player.sendMessage("Copy & Paste (Click with the left mouse button on the link here) ->: http://www." + paymentAddress + ".myaddress");
-        player.sendMessage("");
+        player.sendMessage("Copy & Paste (Click with the left mouse button on the link here) ->: ");
+        player.sendMessage("http://vps.p-and-c-ictsolutions.co.za:3008/address/"+ paymentAddress);
         sendBalanceMessage(player);
         player.sendMessage("----------------------------------");
     }
 
     public void sendHelpMessage(Player player) {
-        player.sendMessage("---WerrisCoiniator----v 0.1 beta--");
+        player.sendMessage("---GuaCraft----v 0.1 beta--");
         player.sendMessage("/wcoin pay <playerName> <amount> - pay to <playerName> a certain amount of coins!");
         player.sendMessage("/wcoin paymentTransfer <account address> <amount> - pay to <account address> a certain amount of coins!");
         player.sendMessage("/wcoin balance - get details of your account!");

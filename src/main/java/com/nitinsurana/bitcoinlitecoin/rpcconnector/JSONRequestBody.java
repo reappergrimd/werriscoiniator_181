@@ -5,21 +5,12 @@
  */
 package com.nitinsurana.bitcoinlitecoin.rpcconnector;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author hp
  */
 public class JSONRequestBody {
 
-    public static final Logger LOG = Logger.getLogger(JSONRequestBody.class.getName());
-
-//  $request = array(
-//						'method' => $method,
-//						'params' => $params,
-//						'id' => $currentId
-//						);
     private String method, id;
     private Object[] params = new Object[]{};
 

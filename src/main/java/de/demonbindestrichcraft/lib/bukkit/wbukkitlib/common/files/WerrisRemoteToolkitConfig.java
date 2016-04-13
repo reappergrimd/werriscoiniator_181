@@ -7,7 +7,6 @@ package de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.files;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *

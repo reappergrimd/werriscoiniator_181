@@ -5,18 +5,12 @@
  */
 package com.nitinsurana.bitcoinlitecoin.rpcconnector;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author hp
  */
 public enum APICalls {
 
-//    public static final Logger LOG = Logger.getLogger(APICalls.class.getName());
-//
-//    public static final String GET_NEW_ADDRESS = "";
-//    public static final String DUMP_PRIVATE_KEY = "";
     GET_NEW_ADDRESS("getnewaddress"),
     DUMP_PRIVATE_KEY("dumpprivkey"),
     GET_ACCOUNT("getaccount"),
@@ -25,7 +19,7 @@ public enum APICalls {
     LIST_ADDRESS_GROUPINGS("listaddressgroupings"),
     LIST_RECEIVED_BY_ACCOUNT("listreceivedbyaccount"),
     LIST_RECEIVED_BY_ADDRESS("listreceivedbyaddress"),
-    SEND_FROM("sendfrom"),
+    SEND_FROM("sendfrom"),  
     SEND_RAW_TRANSACTION("sendrawtransaction"),
     SET_ACCOUNT("setaccount"),
     SEND_TO_ADDRESS("sendtoaddress"),
@@ -39,9 +33,12 @@ public enum APICalls {
     DECODE_RAW_TRANSACTION("decoderawtransaction"),
     GET_RAW_TRANSACTION("getrawtransaction"),
     LIST_TRANSACTIONS("listtransactions"),
-    ENCRYPT_WALLET("encryptwallet"),
+    LIST_UNSPENT("listunspent"),
+    CREATE_RAW_TRANSACTION("createrawtransaction"),
+    SIGN_RAW_TRANSACTION("signrawtransaction"),
+    VALIDATE_ADDRESS("validateaddress"),
     MOVE("move"),
-    WALLET_PASS_PHRASE("walletpassphrase");
+    ENCRYPT_WALLET("encryptwallet");
 
     private String value;
 
@@ -51,7 +48,7 @@ public enum APICalls {
 
     @Override
     public String toString() {
-//        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        //Using in BitcoinRPC#callAPIMethod(..)
         return value;
     }
 

@@ -5,7 +5,16 @@ package de.demonbindestrichcraft.lib.bukkit.wbukkitlib.common.files;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
